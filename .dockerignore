@@ -1,0 +1,21 @@
+# Don't send these to Docker build context
+.venv/
+venv/
+.git/
+__pycache__/
+
+# Data files — the API doesn't need training data
+data/
+
+# MLflow runs — training artifact, not needed for serving
+mlruns/
+
+# EDA outputs — only the model artifacts matter for the container
+outputs/figures/
+outputs/reports/
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+*.md
