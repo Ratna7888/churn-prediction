@@ -20,6 +20,8 @@ services:
     container_name: streamlit
     ports:
       - "8501:8501"
+    environment:
+      - API_URL=http://churn-api:8000
     command: ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]
     volumes:
       - ./data/raw:/app/data/raw:ro

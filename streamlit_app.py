@@ -21,7 +21,8 @@ import json
 import time
 from pathlib import Path
 
-API_URL = "http://localhost:8000"
+import os
+API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 # ──────────────────────────────────────────────
 # Page config
@@ -215,7 +216,7 @@ def page_batch_prediction():
             ],
             "Required": ["✅"] * 19,
         })
-        st.dataframe(expected_cols, width="stretch", hide_index=True)
+        st.dataframe(expected_cols, use_container_width=True, hide_index=True)
 
     # Sample download
     sample_path = Path("data/sample_batch.csv")
@@ -234,7 +235,7 @@ def page_batch_prediction():
     if uploaded is not None:
         df = pd.read_csv(uploaded)
         st.subheader(f"Uploaded: {len(df)} customers")
-        st.dataframe(df.head(), width="stretch")
+        st.dataframe(df.head(), use_container_width=True)
 
         # Clean up columns if needed
         if "customerID" in df.columns:
@@ -305,7 +306,7 @@ def page_batch_prediction():
                 output_df.style.background_gradient(
                     subset=["churn_probability"], cmap="RdYlGn_r"
                 ),
-                width="stretch",
+                use_container_width=True,
                 height=400,
             )
 
@@ -513,7 +514,7 @@ def page_model_comparison():
             {c: "{:.4f}" for c in present_numeric if c in comparison.columns}
         ).highlight_max(subset=present_numeric, color="#d4edda")
 
-        st.dataframe(styled, width="stretch", hide_index=True)
+        st.dataframe(styled, use_container_width=True, hide_index=True)
 
         # Bar chart comparison
         st.subheader("Metric Comparison")
