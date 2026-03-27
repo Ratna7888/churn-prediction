@@ -129,7 +129,7 @@ churn-prediction/
 
 ```bash
 # Clone and setup
-git clone https://github.com/YOUR_USERNAME/churn-prediction.git
+git clone https://github.com/Ratna7888/churn-prediction.git
 cd churn-prediction
 python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
